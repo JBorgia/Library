@@ -26,6 +26,7 @@ public class BookController {
 	// Respond to request by returning all Books
 	@RequestMapping(path = "book", method = RequestMethod.GET)
 	public Collection<Book> index(HttpServletRequest req, HttpServletResponse res) {
+		System.out.println("api/book called");
 		return bookDAO.index();
 	}
 

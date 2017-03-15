@@ -18,7 +18,7 @@ public class BookDAO implements BookDAOI {
 
 	@Override
 	public Collection<Book> index() {
-		String query = "select r from Book r where r.id > 0";
+		String query = "select b from Book b where b.id > 0";
 		Collection<Book> Books = em.createQuery(query, Book.class).getResultList();
 		return Books;
 	}

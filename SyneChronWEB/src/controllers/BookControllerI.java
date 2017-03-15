@@ -15,8 +15,6 @@ public interface BookControllerI {
 
 	public Collection<Book> index(HttpServletRequest req, HttpServletResponse res);
 	
-	public Collection<Book> indexByUser(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id);
-
 	public Book show(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id);
 
 	public Book update(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id,

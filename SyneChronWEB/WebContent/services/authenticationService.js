@@ -4,15 +4,15 @@ app.factory('authenticationService', function($window, $http) {
 	var service = {};
 
 	service.saveToken = function(token) {
-		$window.localStorage['debate-token'] = token;
+		$window.localStorage['user-token'] = token;
 	};
 
 	service.getToken = function() {
-		return $window.localStorage['debate-token'];
+		return $window.localStorage['user-token'];
 	};
 
 	service.logout = function() {
-		$window.localStorage.removeItem('debate-token');
+		$window.localStorage.removeItem('user-token');
 	};
 
 	service.authUser = function(user) {
