@@ -43,6 +43,8 @@ public class BookDAO implements BookDAOI {
 
 		Book oldBook = em.find(Book.class, id);
 		oldBook.setAuthor(updateBook.getAuthor());
+		oldBook.setQuantity(updateBook.getQuantity());
+		oldBook.setIssued(updateBook.getIssued());
 
 		em.flush();
 
@@ -54,32 +56,33 @@ public class BookDAO implements BookDAOI {
 	public Book create(String ruleJson) {
 
 		ObjectMapper mapper = new ObjectMapper();
-		Book r = null;
+		Book newBook = null;
 		try {
-			r = mapper.readValue(ruleJson, Book.class);
+			newBook = mapper.readValue(ruleJson, Book.class);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 
-		em.persist(r);
+		em.persist(newBook);
 		em.flush();
 
-		String query = "select i from Book i where i.id=(select max(id) from Book)";
-		r = em.createQuery(query, Book.class).getSingleResult();
+		String query = "select b from Book b where b.id=(select max(id) from Book)";
+		newBook = em.createQuery(query, Book.class).getSingleResult();
 
-		return r;
+		System.out.println(newBook);
+		return newBook;
 	}
 
 	@Override
 	@Transactional
 	public Book destroy(int id) {
 
-		Book r = em.find(Book.class, id);
+		Book deleteBook = em.find(Book.class, id);
 
 		try {
-			em.remove(r);
+			em.remove(deleteBook);
 			em.flush();
-			return r;
+			return deleteBook;
 		} catch (IllegalArgumentException iae) {
 			iae.printStackTrace();
 			return null;

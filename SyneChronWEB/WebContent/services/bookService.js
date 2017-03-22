@@ -17,7 +17,7 @@ angular.module('ngLibrary').factory('bookService',
 
 				return $http({
 					method : 'GET',
-					url : 'api/categories',
+					url : 'api/category',
 					headers : {
 						'x-access-token' : authenticationService.getToken()
 					}

@@ -3,6 +3,7 @@
 	<name>SyneChronWEB</name>
 	<comment></comment>
 	<projects>
+		<project>SyneChron</project>
 		<project>SyneChronJPA</project>
 	</projects>
 	<buildSpec>

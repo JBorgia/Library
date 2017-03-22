@@ -18,6 +18,8 @@
 	
 	<bean id="bookDao" class="data.BookDAO" />	
 	<bean id="categoryDAO" class="data.CategoryDAO" />	
+	<bean id="authorDAO" class="data.AuthorDAO" />	
+	<bean id="transactionDAO" class="data.TransactionDAO" />
 	<bean id="userDAO" class="data.UserDAO" />	
 
 	<!-- bcrypt bean -->

@@ -3,27 +3,14 @@ package entities;
 import java.sql.Date;
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-//+-----------+---------+------+-----+---------+----------------+
-//| Field     | Type    | Null | Key | Default | Extra          |
-//+-----------+---------+------+-----+---------+----------------+
-//| id        | int(11) | NO   | PRI | NULL    | auto_increment |
-//| team1id   | int(11) | NO   | MUL | NULL    |                |
-//| team2id   | int(11) | NO   | MUL | NULL    |                |
-//| time      | int(11) | NO   |     | NULL    |                |
-//| side1time | int(11) | NO   |     | NULL    |                |
-//| side2time | int(11) | YES  |     | NULL    |                |
-//| points1   | int(11) | NO   |     | 0       |                |
-//| points2   | int(11) | NO   |     | 0       |                |
-//| winteam   | int(11) | NO   | MUL | NULL    |                |
-//| loseteam  | int(11) | NO   | MUL | NULL    |                |
-//+-----------+---------+------+-----+---------+----------------+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "author")
@@ -34,6 +21,8 @@ public class Author {
 	private String first;
 	private String middle;
 	private String last;
+	@OneToMany(mappedBy = "author")
+	@JsonIgnore
 	private Set<Book> books;
 	private Date birth;
 	private Date death;
@@ -88,6 +77,12 @@ public class Author {
 
 	public int getId() {
 		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "Author [id=" + id + ", first=" + first + ", middle=" + middle + ", last=" + last
+				+ ", birth=" + birth + ", death=" + death + "]";
 	}
 
 }

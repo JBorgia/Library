@@ -18,9 +18,9 @@ public class CategoryDAO implements CategoryDAOI {
 
 	@Override
 	public Collection<Category> index() {
-		String query = "select b from Category b where b.id > 0";
-		Collection<Category> Categorys = em.createQuery(query, Category.class).getResultList();
-		return Categorys;
+		String query = "select c from Category c where c.id > 0";
+		Collection<Category> Categories = em.createQuery(query, Category.class).getResultList();
+		return Categories;
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class CategoryDAO implements CategoryDAOI {
 		}
 
 		Category oldCategory = em.find(Category.class, id);
-		oldCategory.setCategoy(updateCategory.getCategory());
+		oldCategory.setName(updateCategory.getName());
 
 		em.flush();
 

@@ -93,7 +93,7 @@ v-pane-content>div {
 }
 
 .vAccordion--default v-pane.is-expanded>v-pane-header {
-	border-bottom-color: #00909b;
+	border-bottom-color: rgba(0, 50, 101, 0.87);
 }
 
 .vAccordion--default v-pane.is-expanded>v-pane-header::after {
@@ -135,7 +135,7 @@ v-pane-content>div {
 	right: 0;
 	width: 10px;
 	height: 1px;
-	background-color: #00909b;
+	background-color: rgba(0, 50, 101, 0.87);
 	-webkit-transform-origin: 50% 50%;
 	transform-origin: 50% 50%;
 	will-change: transform;
@@ -150,5 +150,5 @@ v-pane-content>div {
 
 .vAccordion--default v-pane-header:hover, .vAccordion--default v-pane-header:focus
 	{
-	color: #00909b;
+	color: rgba(0, 50, 101, 0.87);
 }

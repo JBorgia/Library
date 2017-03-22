@@ -7,36 +7,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-
-//+-----------+---------+------+-----+---------+----------------+
-//| Field     | Type    | Null | Key | Default | Extra          |
-//+-----------+---------+------+-----+---------+----------------+
-//| id        | int(11) | NO   | PRI | NULL    | auto_increment |
-//| team1id   | int(11) | NO   | MUL | NULL    |                |
-//| team2id   | int(11) | NO   | MUL | NULL    |                |
-//| time      | int(11) | NO   |     | NULL    |                |
-//| side1time | int(11) | NO   |     | NULL    |                |
-//| side2time | int(11) | YES  |     | NULL    |                |
-//| points1   | int(11) | NO   |     | 0       |                |
-//| points2   | int(11) | NO   |     | 0       |                |
-//| winteam   | int(11) | NO   | MUL | NULL    |                |
-//| loseteam  | int(11) | NO   | MUL | NULL    |                |
-//+-----------+---------+------+-----+---------+----------------+
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
-@Table(name = "book")
 public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private String author;
+	@ManyToOne
+	@JoinColumn(name = "author_id")
+	private Author author;
 	private String isbn;
 	private Integer quantity;
 	@Column(name = "pub_date")
 	private Date pubDate;
-	private String category;
+	@OneToOne
+	@JoinColumn(name = "category_id")
+	private Category category;
 	private Integer issued;
 
 	public String getName() {
@@ -47,11 +37,11 @@ public class Book {
 		this.name = name;
 	}
 
-	public String getAuthor() {
+	public Author getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(String author) {
+	public void setAuthor(Author author) {
 		this.author = author;
 	}
 
@@ -79,11 +69,11 @@ public class Book {
 		this.pubDate = pubDate;
 	}
 
-	public String getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
@@ -97,6 +87,12 @@ public class Book {
 
 	public int getId() {
 		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", name=" + name + ", author=" + author.getFirst() + " " + author.getLast() + ", isbn=" + isbn + ", quantity=" + quantity
+				+ ", pubDate=" + pubDate + ", category=" + category.getName() + ", issued=" + issued + "]";
 	}
 
 }
